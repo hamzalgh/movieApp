@@ -1,0 +1,57 @@
+*{
+  text-transform: capitalize;
+  margin: 0;
+  padding: 0;
+}
+nav{
+  display: flex;
+  padding: 12px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: lightblue;
+}
+button{
+  background-color: black;
+  color: white;
+  min-width: 24px;
+  padding: 5px;
+  border: 2px solid white;
+  border-radius: 4px;
+}
+.links{
+  display: flex;
+  align-items: center;
+}
+.links h2{
+  margin-right: 20px;
+}
+.links p{
+  display: inline;
+  margin: 0 12px;
+}
+.signing p{
+  display: inline;
+  margin: 0 12px;
+}
+.card-container{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.card{
+  margin: 5px;
+  width: 200px;
+  border: 1px solid;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.card-content{
+  padding: 5px;
+}
+.categories-container{
+  position: absolute;
+  top: -75%;
+  background-color: aqua;
+  transition: .7s ease-in-out;
+}
