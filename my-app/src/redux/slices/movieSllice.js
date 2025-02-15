@@ -2,7 +2,11 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
     movies: [],
-    movie: []
+    movie: {},
+    dependency: {
+        similar: [],
+        related: []
+    }
 }
 
 export const movieSlice = createSlice({
@@ -14,9 +18,15 @@ export const movieSlice = createSlice({
         },
         selectedMovie: (state, action) => {
             state.movie = action.payload
+        },
+        setSimilar: (state, action) => {
+            state.dependency.similar = action.payload
+        },
+        setRelated: (state, action) => {
+            state.dependency.related = action.payload
         }
     }
 })
 
-export const { setMovies, selectedMovie } = movieSlice.actions
+export const { setMovies, selectedMovie, setSimilar, setRelated } = movieSlice.actions
 export default movieSlice.reducer

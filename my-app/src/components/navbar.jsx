@@ -1,3 +1,4 @@
+import MovieSearch from "./movieSearch"
 
 function Navbar(){
     function hanldeCategoriesShow(){
@@ -10,15 +11,15 @@ function Navbar(){
             <div className="links">
                 <h2>brand</h2>
                 <div>
+                    <p>TV shows</p>
                     <p>films</p>
-                    <p>artistes</p>
-                    <p>plus</p>
+                    <p onClick={hanldeCategoriesShow}>categories</p>
                 </div>
             </div>
-            <button onClick={hanldeCategoriesShow}>categories</button>
+            <MovieSearch />
             <div className="signing">
-                <p>sign up</p>
-                <p>join us</p>
+                <p>log in</p>
+                <p className="signUp">sign up</p>
             </div>
         </nav>
     )
