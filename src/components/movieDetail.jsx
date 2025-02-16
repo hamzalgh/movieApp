@@ -1,11 +1,12 @@
-import CSS from './movieDetail.module.css'
-
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectedMovie, setRelated, setSimilar } from "../redux/slices/movieSllice";
 import { Link } from "react-router-dom";
+import apiKey from '../API/APIKey';
+
+import CSS from './movieDetail.module.css'
 
 function MovieDetail(){
     const {movieId} = useParams()
@@ -15,19 +16,19 @@ function MovieDetail(){
     
     const fetchMovie = async () => {
         const response = await axios
-        .get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=9c138d9a480ab0a47e117144089495c6`)
+        .get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`)
         .catch((err) => console.log("Err", err))
         // dispatching the movie details
         dispatch(selectedMovie(response.data))
 
         const similarRes = await axios
-        .get(`https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=9c138d9a480ab0a47e117144089495c6`)
+        .get(`https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${apiKey}`)
         .catch((err) => console.log("Err", err))
         // dispatching the first 5 similar movies
         dispatch(setSimilar(similarRes.data.results.slice(0, 6)))
 
         const relatedRes = await axios
-        .get(`https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=9c138d9a480ab0a47e117144089495c6`)
+        .get(`https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${apiKey}`)
         .catch((err) => console.log("Err", err))
         // dispatching the first 5 related movies
         dispatch(setRelated(relatedRes.data.results.slice(0, 6)))        

@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCategorie } from "../redux/slices/categorieSlice";
+import apiKey from "../API/APIKey";
 
 function Categories(){
     function hanldeCategoriesHide(){
@@ -16,7 +17,7 @@ function Categories(){
 
     const fetchCategorie = async () => {
         const response = await axios
-        .get("https://api.themoviedb.org/3/genre/movie/list?api_key=9c138d9a480ab0a47e117144089495c6&language=en-US")
+        .get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`)
         .catch((err) => console.log("Err", err))
 
         dispatch(setCategorie(response.data.genres))
