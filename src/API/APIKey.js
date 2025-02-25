@@ -1,3 +1,3 @@
-const apiKey = process.env.REACT_APP_TMDB_API_KEY;
+const apiKey = import.meta.env.VITE_API_KEY;
 
 export default apiKey;

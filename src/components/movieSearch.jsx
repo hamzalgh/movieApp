@@ -2,13 +2,13 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { setMovies } from "../redux/slices/movieSllice";
+import apiKey from '../API/APIKey';
 
 const MovieSearch = () => {
   const dispatch = useDispatch()
 
   const [query, setQuery] = useState('');
 
-  const apiKey = '9c138d9a480ab0a47e117144089495c6';
   const apiURL = 'https://api.themoviedb.org/3/search/movie';
 
   const handleSearch = async (e) => {

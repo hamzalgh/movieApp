@@ -1,4 +1,6 @@
 import MovieSearch from "./movieSearch"
+import { Button } from "./ui/button"
+import { Checkbox } from "./ui/checkbox"
 
 function Navbar(){
     function hanldeCategoriesShow(){
@@ -18,8 +20,9 @@ function Navbar(){
             </div>
             <MovieSearch />
             <div className="signing">
-                <p>log in</p>
+                <Button>log in</Button>
                 <p className="signUp">sign up</p>
+                <Checkbox />
             </div>
         </nav>
     )
