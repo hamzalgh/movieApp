@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { setMovies } from "../redux/slices/movieSllice";
 import apiKey from '../API/APIKey';
+import { Input } from './ui/input';
+import { SearchIcon } from 'lucide-react';
 
 const MovieSearch = () => {
   const dispatch = useDispatch()
@@ -30,17 +32,16 @@ const MovieSearch = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSearch}>
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search for movies..."
-        />
-        <button type="submit">Search</button>
-      </form>
-    </div>
+    <form onSubmit={handleSearch} className='flex justify-between items-center gap-4 relative'>
+      <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground"/>
+      <Input
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search for movies..."
+        className="w-md pl-8"
+      />
+    </form>
   );
 };
 

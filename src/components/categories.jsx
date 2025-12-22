@@ -1,19 +1,49 @@
-import categoriesCSS from "./categories.module.css";
-
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCategorie } from "../redux/slices/categorieSlice";
+import { setMovies } from "../redux/slices/movieSllice";
 import apiKey from "../API/APIKey";
 
-function Categories(){
-    function hanldeCategoriesHide(){
-        let categoriesContainer = document.getElementById("categoriesContainer")
-        categoriesContainer.style.top = "-75%"
-    }
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+  } from "@/components/ui/select"
 
+function Categories(){
     const dispatch = useDispatch()
     const categories = useSelector((state) => state.categories.categories)
+    const [selectedCategory, setSelectedCategory] = useState("all");
+
+    const handleCategoryChange = (categoryValue) => {
+        setSelectedCategory(categoryValue);
+        fetchMoviesByCategory(categoryValue);
+    };
+
+    const fetchMoviesByCategory = async (categoryValue) => {
+        const categoryId = categoryValue === "all"
+            ? ""
+            : categories.find((list) => list.name === categoryValue).id;
+      
+        try {
+            const response = await axios
+            .get(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${categoryId}&page=1`)
+            .catch((err) => console.log("Err", err));
+
+            const response2 = await axios
+            .get(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${categoryId}&page=2`)
+            .catch((err) => console.log("Err", err));
+
+            response.data.results = response.data.results.concat(response2.data.results);
+        
+            dispatch(setMovies(response.data.results));
+        } catch (err) {
+            console.log("Error fetching movies:", err);
+        }
+    }
 
     const fetchCategorie = async () => {
         const response = await axios
@@ -27,22 +57,19 @@ function Categories(){
     }, [])
 
     return(
-        <>
-        <div id="categoriesContainer" className="categories-container top-bottom">
-            <button onClick={hanldeCategoriesHide}>X</button>
-            <div className={categoriesCSS.cardContainer}>
+        <Select onValueChange={handleCategoryChange} value={selectedCategory}>
+            <SelectTrigger className="w-[180px] bg-white cursor-pointer">
+                <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+                <SelectItem value="all">all</SelectItem>
                 {categories.map((list)=>{
                     return (
-                    <div key={list.id} className={categoriesCSS.card}>
-                        <div className={categoriesCSS.cardContent}>
-                            <h3 className={categoriesCSS.cardTitle}>{list.name}</h3>
-                        </div>
-                    </div>
+                        <SelectItem key={list.id} value={list.name}>{list.name}</SelectItem>
                     )
                 })}
-            </div>
-        </div>
-        </>
+            </SelectContent>
+        </Select>
     )
 }
 export default Categories

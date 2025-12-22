@@ -1,29 +1,19 @@
+import Categories from "./categories"
 import MovieSearch from "./movieSearch"
 import { Button } from "./ui/button"
-import { Checkbox } from "./ui/checkbox"
 
 function Navbar(){
-    function hanldeCategoriesShow(){
-        let categoriesContainer = document.getElementById("categoriesContainer")
-        categoriesContainer.style.top = "0"
-    }
-
     return(
-        <nav>
-            <div className="links">
-                <h2>brand</h2>
-                <div>
-                    <p>TV shows</p>
-                    <p>films</p>
-                    <p onClick={hanldeCategoriesShow}>categories</p>
-                </div>
-            </div>
-            <MovieSearch />
-            <div className="signing">
-                <Button>log in</Button>
-                <p className="signUp">sign up</p>
-                <Checkbox />
-            </div>
+        <nav className="flex justify-around items-center py-4 bg-background/95 shadow-md sticky top-0 z-20">
+            <p className="font-bold hover:underline hover:cursor-pointer text-xl">movies</p>
+            <aside className="flex justify-between items-center gap-6 text-xl">
+                <Categories />
+                <MovieSearch />
+            </aside>
+            <aside className="flex justify-between items-center gap-4">
+                <Button className="bg-gray-800 cursor-pointer">log in</Button>
+                <Button variant="ghost" className="border-2 hover:bg-gray-800 hover:text-white cursor-pointer">sign up</Button>
+            </aside>
         </nav>
     )
 }
