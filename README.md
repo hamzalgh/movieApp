@@ -40,6 +40,8 @@ This is the **frontend-only version** of the application. Future updates may inc
 
 ## Demo showcase
 
+[Watch the demo video](./showcase/movieApp.mp4)
+
 <video width="100%" controls>
-  <source src="Showcase/movieApp_Showcase.mp4" type="video/mp4">
+  <source src="showcase/movieApp.mp4" type="video/mp4">
 </video>
