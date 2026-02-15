@@ -1,13 +1,13 @@
 import Header from './components/header';
-import Movie from './components/movie';
-import MovieDetail from './components/movieDetail';
+import Movie from './pages/movie';
+import MovieDetail from './pages/movieDetail';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App(){
   return (
     <>
-      <Header />
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path='/' element={<Movie />} />
           <Route path='/movie/:movieId' element={<MovieDetail />} />

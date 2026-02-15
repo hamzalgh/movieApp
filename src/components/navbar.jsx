@@ -1,11 +1,14 @@
 import Categories from "./categories"
 import MovieSearch from "./movieSearch"
-import { Button } from "./ui/button"
+import { Button } from "@/components/ui/button"
+import { Link } from "react-router-dom";
 
 function Navbar(){
     return(
         <nav className="flex justify-around items-center py-4 bg-background/95 shadow-md sticky top-0 z-20">
-            <p className="font-bold hover:underline hover:cursor-pointer text-xl">movies</p>
+            <Link to={'/'}>
+                <p className="font-bold hover:underline hover:cursor-pointer text-xl">movies</p>
+            </Link>
             <aside className="flex justify-between items-center gap-6 text-xl">
                 <Categories />
                 <MovieSearch />
